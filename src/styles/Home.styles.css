@@ -1,0 +1,32 @@
+.title{
+    font-size: 32px;
+    color: #121214;
+    text-align: center;
+}
+
+.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    height: 100vh;
+}
+
+.button{
+    cursor: pointer;
+
+    display: block;
+    
+    height: 56px;
+    width: 280px;
+    margin-top: 48px;
+    
+    border: 0px;
+
+    color: #FFF;
+    background-color: #10a37f;
+
+    font-size: 16px;
+    font-weight: 500;
+}
