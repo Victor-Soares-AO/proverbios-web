@@ -1,16 +1,25 @@
 import { useEffect, useState } from 'react';
-import { getGPTResponse } from '../utils/openia';
+import { getGPTResponse } from '../api/openia';
 import '../styles/Home.styles.css';
+import { useRef } from 'react';
 
 function App() {
 
-    const [text, setText] = useState();
+    const selectRef = useRef(null)
 
-    const prompt = 'Diga um proverbio em Kimbundo seguido da sua tradução em português. Formate o texto separando o proverbio e a tradução por um traço. Coloque somente o provérbio em Kimbundo entre aspas, remova as aspas da traducao em portugues.';
+    const [quote, setQuote] = useState();
+    const [translate, setTranslate] = useState();
+
+    const prompt = 'Diga um proverbio em Kimbundu seguido da sua tradução em português. Formate o texto separando o proverbio e a tradução por um traço. Coloque somente o provérbio em Kimbundo entre aspas, remova as aspas da tradução em portugues.';
 
     const result = async () => {
         const data = await getGPTResponse(prompt);
-        setText(data);
+
+        const aux1 = data.split('-')[0].replaceAll('"',"");
+        const aux2 = data.split('-')[1].replaceAll('"',"");
+
+        setQuote(aux1);
+        setTranslate(aux2)
     }
 
     useEffect(() => {
@@ -18,8 +27,20 @@ function App() {
     }, [])
 
     return (
+        // <main className='container'>
+        //     <nav className='menu'>
+        //         <select ref={selectRef} name='languages' id='languages'>
+        //             <option value='Kimbundu' >Kimbundu</option>
+        //             <option value='Kikongo' >Kikongo</option>
+        //             <option value='Umbundu' >Umbundu</option>
+        //             <option value='Kwanhama' >Kwanhama</option>
+        //         </select>
+        //     </nav>
+
+        
         <div className="content">
-            <h1 className='title'>{text}</h1>
+            <h1 className='title'>{quote}</h1>
+            <p className='subtitle'>{translate}</p>
 
             <button
                 onClick={result}
@@ -28,6 +49,8 @@ function App() {
                 Novo provérbio
             </button>
         </div>
+
+        // </main>
     )
 }
 
