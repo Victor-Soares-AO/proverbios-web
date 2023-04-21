@@ -77,12 +77,13 @@
     margin-top: 48px;
     
     border: 0px;
+    border-radius: 6px;
 
-    /* color: #FFF;
-    background-color: #10a37f; */
+    /* color: #FFF;*/
+    background-color: #10a37f;
 
     color: #FFF;
-    background-color: #202024;
+    /* background-color: #202024; */
 
     font-size: 16px;
     font-weight: 500;
